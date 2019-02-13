@@ -20,9 +20,8 @@
 
 (use-package counsel
   :ensure t
-  :bind ("M-y" . counsel-yank-pop))
-;; :map ivy-minibuffer-map
-;; ("M-y" . ivy-next-line)))
+  :config
+  (counsel-mode +1))
 
 (use-package csharp-mode
   :ensure t)
@@ -64,16 +63,7 @@
 
   :bind (("C-s" . swiper)
          ("C-c C-r" . ivy-resume)
-         ("<f6>" . ivy-resume)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("<f1> f" . counsel-describe-function)
-         ("<f1> v" . counsel-describe-variable)
-         ("<f1> l" . counsel-find-library)
-         ("<f2> i" . counsel-info-lookup-symbol)
-         ("<f2> u" . counsel-unicode-char)
-         :map read-expression-map
-         ("C-r" . counsel-expression-history)))
+         ("<f6>" . ivy-resume)))
 
 (use-package vlf
   :ensure t
