@@ -32,7 +32,17 @@
   :mode "\\.[Tt][Ss][Vv]\\'")
 
 (use-package hydra
-  :ensure t)
+  :ensure t
+  :config
+  (defhydra hydra-buffer-encoding (:color pink :hint nil)
+    "\n
+    _u_: utf-8   _1_: cp1251   _8_: cp866\n\n"
+    ("u" (revert-buffer-with-coding-system 'utf-8) :exit t)
+    ("1" (revert-buffer-with-coding-system 'cp1251) :exit t)
+    ("8" (revert-buffer-with-coding-system 'cp866) :exit t)
+    ("q" nil "quit" :color blue))
+
+  :bind ("C-c e" . hydra-buffer-encoding/body))
 
 (use-package magit
   :ensure t
