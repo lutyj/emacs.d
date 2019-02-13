@@ -1,7 +1,7 @@
 (when (getenv "WORK_COMPUTER")
   (setq url-proxy-services
-        '(("http" . "127.0.0.1:3128")
-          ("https" . "127.0.0.1:3128"))))
+        '(("http" . "192.168.56.1:3128")
+          ("https" . "192.168.56.1:3128"))))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))

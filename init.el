@@ -140,4 +140,4 @@ When `doc-view-continuous' is non-nil, scrolling at the bottom moves to the next
   (setq ls-lisp-UCA-like-collation nil)
   (setq find-program "gfind")
   (setq tramp-default-method "plink")
-  (setq python-check-command "C:/Anaconda2/Scripts/pyflakes.exe"))
+  (setq python-check-command "C:/Miniconda3/Scripts/pyflakes.exe"))
