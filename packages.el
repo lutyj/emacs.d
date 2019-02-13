@@ -6,7 +6,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
 
-;; Bootstrap 'use-package'
+; Bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -21,7 +21,7 @@
 (use-package counsel
   :ensure t
   :bind ("M-y" . counsel-yank-pop))
-   ;; :map ivy-minibuffer-map
+;; :map ivy-minibuffer-map
 ;; ("M-y" . ivy-next-line)))
 
 (use-package csharp-mode
@@ -38,9 +38,11 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
-(use-package powerline
-  :ensure t
-  :config (powerline-default-theme))
+; powerline leads to ediff freeze on Windows
+(when (not (eq system-type 'windows-nt))
+  (use-package powerline
+    :ensure t
+    :config (powerline-default-theme)))
 
 (use-package swiper
   :ensure t
