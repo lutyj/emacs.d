@@ -115,6 +115,9 @@ When `doc-view-continuous' is non-nil, scrolling at the bottom moves to the next
 ; Increasing this value can lead to a better speed/memory tradeoff
 ;; (setq gc-cons-threshold 20000000)
 
+; Disable scanning for bidirectional text (speed up on long lines)
+(setq-default bidi-display-reordering nil)
+
 ;; (add-hook 'dired-mode-hook 'auto-revert-mode)
 (global-auto-revert-mode +1)
 (setq auto-revert-verbose nil) ; Disable 'Reverting buffer' message
