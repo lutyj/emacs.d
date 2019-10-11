@@ -45,8 +45,6 @@
 (customize-set-variable 'whitespace-line-column 99)
 (add-hook 'prog-mode-hook 'whitespace-mode)
 
-(windmove-default-keybindings 'meta)
-
 (winner-mode +1)
 
 ; Use PostgreSQL syntax by default

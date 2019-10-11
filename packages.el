@@ -11,6 +11,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(use-package ace-window
+  :ensure t
+  :config (set-face-attribute 'aw-leading-char-face nil :height 2.0)
+  :bind ("M-o" . ace-window))
+
 (use-package auto-package-update
   :ensure t
   :custom
