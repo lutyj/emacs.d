@@ -1,7 +1,7 @@
 (when (getenv "WORK_COMPUTER")
-  (setq url-proxy-services
-        '(("http" . "192.168.56.1:3128")
-          ("https" . "192.168.56.1:3128"))))
+  (customize-set-variable 'url-proxy-services
+                          '(("http" . "192.168.56.1:3128")
+                            ("https" . "192.168.56.1:3128"))))
 
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
@@ -13,15 +13,14 @@
 
 (use-package auto-package-update
   :ensure t
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
+  :custom
+  (auto-package-update-delete-old-versions t)
+  (auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
 (use-package counsel
   :ensure t
-  :config
-  (counsel-mode +1))
+  :config (counsel-mode +1))
 
 (use-package csharp-mode
   :ensure t)
@@ -56,9 +55,10 @@
 (use-package swiper
   :ensure t
   :demand t
+  :custom
+  (ivy-use-virtual-buffers t)
+  (enable-recursive-minibuffers t)
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
   (ivy-mode +1)
 
   :bind (("C-s" . swiper)
@@ -69,9 +69,10 @@
   :ensure t
   :demand t
   :after hydra
+  :custom
+  (vlf-application 'dont-ask)
   :config
   (require 'vlf-setup)
-  (setq vlf-application 'dont-ask)
 
   (defhydra hydra-vlf (:color pink :hint nil)
     "\n
