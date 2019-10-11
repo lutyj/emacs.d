@@ -34,6 +34,9 @@
   :ensure t
   :mode "\\.[Tt][Ss][Vv]\\'")
 
+(use-package ein
+  :ensure t)
+
 (use-package hydra
   :ensure t
   :config
@@ -56,6 +59,13 @@
   (use-package powerline
     :ensure t
     :config (powerline-default-theme)))
+
+(use-package scala-mode
+  :ensure t
+  :custom (scala-indent:align-parameters t))
+
+(use-package smex
+  :ensure t)
 
 (use-package swiper
   :ensure t
