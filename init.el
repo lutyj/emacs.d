@@ -129,6 +129,7 @@ When `doc-view-continuous' is non-nil, scrolling at the bottom moves to the next
 
 (customize-set-variable 'default-input-method 'russian-computer)
 
+(customize-set-variable 'help-window-select t)
 
 ; (customize-set-variable 'org-babel-load-languages (quote ((emacs-lisp . t) (ein . t))))
 
