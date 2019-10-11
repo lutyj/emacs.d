@@ -139,6 +139,8 @@ When `doc-view-continuous' is non-nil, scrolling at the bottom moves to the next
 
 (when (eq system-type 'windows-nt)
   (customize-set-variable 'ls-lisp-dirs-first t)
+  (customize-set-variable 'ls-lisp-UCA-like-collation nil)
+  (customize-set-variable 'ls-lisp-use-localized-time-format t)
   (customize-set-variable 'ls-lisp-format-time-list '("%Y-%m-%d %H:%M" "%Y-%m-%d %H:%M"))
   (customize-set-variable 'find-program "gfind")
   (customize-set-variable 'tramp-default-method "plink")
