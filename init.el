@@ -70,41 +70,6 @@ This command does NOT push any text to `kill-ring'."
 (global-set-key (kbd "M-d") 'delete-word)
 (global-set-key (kbd "<M-backspace>") 'backward-delete-word)
 
-(customize-set-variable 'doc-view-continuous t)
-(customize-set-variable 'doc-view-resolution 200)
-(customize-set-variable 'doc-view-pdfdraw-program "mutool")
-(customize-set-variable 'doc-view-pdf->png-converter-function 'doc-view-pdf->png-converter-mupdf)
-
-(defun doc-view-beginning-of-buffer-or-previous-page ()
-  "Scroll to the top-left corner of the image if possible, else goto preious page.
-When `doc-view-continuous' is non-nil, scrolling at the top moves to the previuos page."
-  (interactive)
-  (if (/= 0 (window-vscroll))
-      (image-bob)
-    (doc-view-scroll-down-or-previous-page 1)))
-
-(defun doc-view-end-of-buffer-or-next-page ()
-  "Scroll to the bottom-right corner of the image if possible, else goto next page.
-When `doc-view-continuous' is non-nil, scrolling at the bottom moves to the next page."
-  (interactive)
-  (doc-view-next-line-or-next-page 1)
-  (when (/= 0 (window-vscroll))
-      (image-eob)))
-
-(eval-after-load "doc-view"
-  '(progn
-     (defun doc-view-pdf->png-converter-mupdf (pdf png page callback)
-       (doc-view-start-process
-        "pdf->png" doc-view-pdfdraw-program
-        `(,"draw"
-          ,(concat "-o" png)
-          ,(format "-r%d" (round doc-view-resolution))
-          ,pdf
-          ,@(if page `(,(format "%d" page))))
-        callback))
-
-     (define-key doc-view-mode-map (kbd "<prior>") 'doc-view-beginning-of-buffer-or-previous-page)
-     (define-key doc-view-mode-map (kbd "<next>") 'doc-view-end-of-buffer-or-next-page)))
 
 ; Speed up emacs on buffers with a lot of unicode
 (customize-set-variable 'inhibit-compacting-font-caches t)
