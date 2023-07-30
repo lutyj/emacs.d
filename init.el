@@ -70,6 +70,11 @@ This command does NOT push any text to `kill-ring'."
 (global-set-key (kbd "M-d") 'delete-word)
 (global-set-key (kbd "<M-backspace>") 'backward-delete-word)
 
+; Code folding with the hideshow mode
+(require 'hideshow)
+(define-key hs-minor-mode-map (kbd "C-M-[") 'hs-hide-block)
+(define-key hs-minor-mode-map (kbd "C-M-]") 'hs-show-block)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
 
 ; Speed up emacs on buffers with a lot of unicode
 (customize-set-variable 'inhibit-compacting-font-caches t)
@@ -100,13 +105,27 @@ This command does NOT push any text to `kill-ring'."
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(load (concat user-emacs-directory "packages.el"))
+; Turn off keybindings for (suspend-frame)
+(global-unset-key (kbd "C-z"))
+(global-unset-key (kbd "C-x C-z"))
+
+; Use GNU ls emulation on non-GNU systems
+(when (member system-type '(berkeley-unix darwin windows-nt))
+  (require 'ls-lisp)
+  (customize-set-variable 'ls-lisp-use-insert-directory-program nil)
+  (customize-set-variable 'ls-lisp-dirs-first t)
+  (customize-set-variable 'ls-lisp-use-localized-time-format t)
+  (customize-set-variable 'ls-lisp-format-time-list '("%b %d %H:%M" "%b %d  %Y")))
+
+(when (eq system-type 'darwin)
+  (customize-set-variable 'mac-command-modifier 'control)
+  (global-set-key (kbd "<home>") 'move-beginning-of-line)
+  (global-set-key (kbd "<end>") 'move-end-of-line))
 
 (when (eq system-type 'windows-nt)
-  (customize-set-variable 'ls-lisp-dirs-first t)
   (customize-set-variable 'ls-lisp-UCA-like-collation nil)
-  (customize-set-variable 'ls-lisp-use-localized-time-format t)
-  (customize-set-variable 'ls-lisp-format-time-list '("%Y-%m-%d %H:%M" "%Y-%m-%d %H:%M"))
   (customize-set-variable 'find-program "gfind")
   (customize-set-variable 'tramp-default-method "plink")
   (customize-set-variable 'python-check-command "C:/Miniconda3/Scripts/pyflakes.exe"))
+
+(load (concat user-emacs-directory "packages.el"))
